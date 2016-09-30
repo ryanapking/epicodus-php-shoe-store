@@ -10,15 +10,15 @@ _An application for tracking shoe stores and the brands they sold in them. User 
 
 ## Specifications
 
-_Spec 1: The store ID can be returned._
+_Spec 1: A store's ID can be returned._
 * _Input: Get "Shoepocalypse" ID_
 * _Output: 34_
 
-_Spec 2: The store name can be returned._
+_Spec 2: A store's name can be returned._
 * _Input: Get store name_
 * _Output: "Shoemageddon"_
 
-_Spec 3: The store name can be changed._
+_Spec 3: A store's name can be changed._
 * _Input: Change "Shoemageddon" to "Shoepocalypse"_
 * _Output: Store name now set to "Shoepocalypse"_
 
@@ -47,27 +47,17 @@ _Spec 9: A store can be found by the database ID number._
 * _Input: Find Shoe store with ID 47_
 * _Output: "Shoepocalypse"_
 
-_Spec 10: A brand of shoes can be added to a store._
-* _Input: "Shoepocalypse" now sells "Nike" shoes_
-* _Output: Database brands_stores table now includes an entry linking "Shoepocalypse" with the "Nike" brand_
 
-_Spec 11: A brand of shoes can be deleted from a store._
-* _Input: "Shoepocalypse" no longer sells "Nike" shoes_
-* _Output: Database brands_stores table no longer includes an entry linking "Shoepocalypse" with the "Nike" brand_
 
-_Spec 12: A list of all brands sold in a store can be returned._
-* _Input: Get all shoe brands sold at "Shoepocalypse"_
-* _Output: "Nike", "Crocs"_
-
-_Spec 13: The brand ID can be returned._
+_Spec 13: A brand's ID can be returned._
 * _Input: Get "Wear Us!" ID_
 * _Output: 23_
 
-_Spec 14: The brand name can be returned._
+_Spec 14: A brand's name can be returned._
 * _Input: Get brand name_
 * _Output: "Wear Us!"_
 
-_Spec 15: The brand name can be changed._
+_Spec 15: A brand's name can be changed._
 * _Input: Change "Wear Us!" to "On Your Feet"_
 * _Output: Brand name now set to "On Your Feet"_
 
@@ -95,6 +85,18 @@ _Spec 21: Store objects can be updated in the database_
 _Spec 22: A brand can be found by the database ID number._
 * _Input: Find Shoe brand with ID 47_
 * _Output: "On Your Feet"_
+
+_Spec 10: A brand of shoes can be added to a store._
+* _Input: "Shoepocalypse" now sells "Nike" shoes_
+* _Output: Database brands_stores table now includes an entry linking "Shoepocalypse" with the "Nike" brand_
+
+_Spec 11: A brand of shoes can be deleted from a store._
+* _Input: "Shoepocalypse" no longer sells "Nike" shoes_
+* _Output: Database brands_stores table no longer includes an entry linking "Shoepocalypse" with the "Nike" brand_
+
+_Spec 12: A list of all brands sold in a store can be returned._
+* _Input: Get all shoe brands sold at "Shoepocalypse"_
+* _Output: "Nike", "Crocs"_
 
 
 
