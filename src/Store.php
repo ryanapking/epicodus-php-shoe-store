@@ -12,7 +12,8 @@
 
         function save()
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO stores (name) VALUES ('{$this->name}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         function delete()
@@ -48,12 +49,19 @@
 
         static function deleteAll()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM stores;");
         }
 
         static function getAll()
         {
-
+            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            $stores = array();
+            foreach($returned_stores as $store) {
+                $id = $store['id'];
+                $name = $store['name'];
+                array_push($stores, new Store($name, $id));
+            }
+            return $stores;
         }
 
     // getters and setters
