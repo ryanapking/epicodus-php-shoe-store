@@ -18,12 +18,12 @@
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->id};");
         }
 
         function update()
         {
-
+            $GLOBALS['DB']->exec("UPDATE stores SET name = '{$this->name}' WHERE id = {$this->id};");
         }
 
         function getBrandList()
@@ -42,9 +42,14 @@
         }
 
     // static functions
-        static function findById()
+        static function findById($search_id)
         {
-
+            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = {$search_id};");
+            foreach ($returned_stores as $store) {
+                $id = $store['id'];
+                $name = $store['name'];
+                return new Store($name, $id);
+            }
         }
 
         static function deleteAll()
