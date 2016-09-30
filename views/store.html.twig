@@ -1,0 +1,56 @@
+{% include 'header.html' %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href='/css/styles.css' rel='stylesheet' type='text/css'>
+        <title>Shoes: {{ store.getName }}</title>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='row'>
+                <div class='col col-sm-6'>
+                    <h2>Shoe brands available at {{ store.getName }}:</h2>
+                    {% if store_brands is not empty %}
+                        <ul>
+                            {% for brand in store_brands %}
+                                <li><a href='/brand/{{ brand.getId }}'>{{ brand.getName }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class='col col-sm-6'>
+                    <h2>Add a new brand to this store:</h2>
+                    <form action='/store/{{ store.getId }}' method='post' class='form well'>
+                        <div class='form-group'>
+                            <label for='brand_id'>Select a brand:</label>
+                            <select name='brand_id' id='brand_id' class='form-control'>
+                                {% for brand in all_brands %}
+                                    <option value={{ brand.getId }}>{{ brand.getName }}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                            <button type='submit' class='btn btn-primary'>Add brand</button>
+                        </div>
+                    </form>
+                    <h2>Update this store:</h2>
+                    <div class='well'>
+                        <form action='/store/{{ store.getId }}' method='post' class='form'>
+                            <input type='hidden' value='patch' name='_method'>
+                            <label for='store_name'>Update this store's name:</label>
+                            <input type='text' name='store_name' id='store_name' placeholder='new name' class='form-control'>
+                            <br>
+                            <button type='submit' class='btn btn-warning'>Update info</button>
+                        </form>
+                        <br>
+                        <form action='/store/{{ store.getId }}' method='post' class='form'>
+                            <input type='hidden' value='delete' name='_method'>
+                            <button type='submit' class='btn btn-danger'>Delete this store</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

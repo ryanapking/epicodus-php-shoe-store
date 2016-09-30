@@ -28,11 +28,10 @@
 
         function getStoreList()
         {
-            $returned_store_ids = $GLOBALS['DB']->query("SELECT brands_stores.store_id FROM brands JOIN brands_stores WHERE (brands.id = brands_stores.brand_id);");
+            $returned_store_ids = $GLOBALS['DB']->query("SELECT brands_stores.store_id FROM brands JOIN brands_stores on (brands.id = brands_stores.brand_id) WHERE brands.id = {$this->id};");
             $stores = array();
             foreach($returned_store_ids as $id) {
                 $search_id = $id['store_id'];
-                var_dump($search_id);
                 array_push($stores, Store::findById($search_id));
             }
             return $stores;

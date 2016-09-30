@@ -177,10 +177,15 @@ class BrandTest extends PHPUnit_Framework_TestCase
         $test_Brand = new Brand($brand_name);
         $test_Brand->save();
 
+        $brand_name2 = "On Your Feet";
+        $test_Brand2 = new Brand($brand_name2);
+        $test_Brand2->save();
+
         $store_name = "Shoepocalypse";
         $test_Store = new Store($store_name);
         $test_Store->save();
         $test_Store->addBrand($test_Brand);
+        $test_Store->addBrand($test_Brand2);
 
         $store_name2 = "Shoemageddon";
         $test_Store2 = new Store($store_name2);
@@ -189,6 +194,7 @@ class BrandTest extends PHPUnit_Framework_TestCase
 
         // Act
         $result = $test_Brand->getStoreList();
+        var_dump($result);
 
         // Assert
         $this->assertEquals([$test_Store, $test_Store2], $result);

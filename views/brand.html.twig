@@ -1,0 +1,43 @@
+{% include 'header.html' %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href='/css/styles.css' rel='stylesheet' type='text/css'>
+        <title>Shoes: {{ store.getName }}</title>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='row'>
+                <div class='col col-sm-6'>
+                    <h2>{{ brand.getName }} shoes sold here:</h2>
+                    {% if brand_stores is not empty %}
+                        <ul>
+                            {% for store in brand_stores %}
+                                <li><a href='/store/{{ store.getId }}'>{{ store.getName }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class='col col-sm-6'>
+                    <h2>Update this brand:</h2>
+                    <div class='well'>
+                        <form action='/brand/{{ brand.getId }}' method='post' class='form'>
+                            <input type='hidden' value='patch' name='_method'>
+                            <label for='brand_name'>Update this brand's name:</label>
+                            <input type='text' name='brand_name' id='brand_name' placeholder='new name' class='form-control'>
+                            <br>
+                            <button type='submit' class='btn btn-warning'>Update info</button>
+                        </form>
+                        <br>
+                        <form action='/brand/{{ brand.getId }}' method='post' class='form'>
+                            <input type='hidden' value='delete' name='_method'>
+                            <button type='submit' class='btn btn-danger'>Delete this brand</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

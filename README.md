@@ -134,7 +134,7 @@ _Contact me via email with any issues_
 
 ## Technologies Used
 
-_HTML, PHP, Silex, Twig_
+_HTML, PHP, Silex, Twig, PHPUnit_
 
 ### License
 
