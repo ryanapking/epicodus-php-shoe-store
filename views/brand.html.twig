@@ -21,12 +21,25 @@
                     {% endif %}
                 </div>
                 <div class='col col-sm-6'>
+                    <h2>Add this brand to another store:</h2>
+                    <form action='/brand/{{ brand.getId }}' method='post' class='form well'>
+                        <div class='form-group'>
+                            <label>Select a store:</label>
+                            <select name='store_id' class='form-control'>
+                                {% for store in all_stores %}
+                                    <option value={{ store.getId }}>{{ store.getName }}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                            <button type='submit' class='btn btn-primary'>Add brand</button>
+                        </div>
+                    </form>
                     <h2>Update this brand:</h2>
                     <div class='well'>
                         <form action='/brand/{{ brand.getId }}' method='post' class='form'>
-                            <input type='hidden' value='patch' name='_method'>
-                            <label for='brand_name'>Update this brand's name:</label>
-                            <input type='text' name='brand_name' id='brand_name' placeholder='new name' class='form-control'>
+                            <input type='hidden' name='_method' value='patch'>
+                            <label>Update this brand's name:</label>
+                            <input type='text' name='brand_name' placeholder='new name' class='form-control'>
                             <br>
                             <button type='submit' class='btn btn-warning'>Update info</button>
                         </form>

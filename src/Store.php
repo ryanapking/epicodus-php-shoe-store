@@ -19,6 +19,7 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->id};");
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->id};");
         }
 
         function update()

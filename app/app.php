@@ -84,12 +84,36 @@
     });
 
 // brand (singular) routes
-
     $app->get('/brand/{brand_id}', function($brand_id) use ($app) {
         // displays a list of stores selling the current brand
         $brand = Brand::findById($brand_id);
         $brand_stores = $brand->getStoreList();
-        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand_stores));
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand_stores, 'all_stores' => Store::getAll()));
+    });
+
+    $app->post('/brand/{brand_id}', function($brand_id) use ($app) {
+        // adds the brand to a store, then redirects to the get route
+        $brand = Brand::findById($brand_id);
+        $store_id = $_POST['store_id'];
+        $store = Store::findById($store_id);
+        $store->addBrand($brand);
+        return $app->redirect('/brand/' . $brand_id);
+    });
+
+    $app->delete('/brand/{brand_id}', function($brand_id) use ($app) {
+        // deletes the current brands, then redirects to the brands route
+        $brand = Brand::findById($brand_id);
+        $brand->delete();
+        return $app->redirect('/brands');
+    });
+
+    $app->patch('/brand/{brand_id}', function($brand_id) use ($app) {
+        // updates the current brand, then redirects to the get route
+        $brand = Brand::findById($brand_id);
+        $new_name = $_POST['brand_name'];
+        $brand->setName($new_name);
+        $brand->update();
+        return $app->redirect('/brand/' . $brand_id);
     });
 
     return $app;
