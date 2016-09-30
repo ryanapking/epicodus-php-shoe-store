@@ -28,17 +28,23 @@
 
         function getBrandList()
         {
-
+            $returned_brand_ids = $GLOBALS['DB']->query("SELECT brands_stores.brand_id FROM stores JOIN brands_stores ON (stores.id = brands_stores.store_id);");
+            $brands = array();
+            foreach($returned_brand_ids as $id) {
+                $search_id = $id['brand_id'];
+                array_push($brands, Brand::findById($search_id));
+            }
+            return $brands;
         }
 
-        function addBrand()
+        function addBrand($brand)
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->id});");
         }
 
-        function deleteBrand()
+        function deleteBrand($brand)
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE brand_id = {$brand->getId()} AND store_id = {$this->id};");
         }
 
     // static functions

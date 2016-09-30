@@ -18,23 +18,35 @@
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->id};");
         }
 
         function update()
         {
-
+            $GLOBALS['DB']->exec("UPDATE brands SET name = '{$this->name}' WHERE id = {$this->id};");
         }
 
         function getStoreList()
         {
-
+            $returned_store_ids = $GLOBALS['DB']->query("SELECT brands_stores.store_id FROM brands JOIN brands_stores WHERE (brands.id = brands_stores.brand_id);");
+            $stores = array();
+            foreach($returned_store_ids as $id) {
+                $search_id = $id['store_id'];
+                var_dump($search_id);
+                array_push($stores, Store::findById($search_id));
+            }
+            return $stores;
         }
 
     // static functions
-        static function findById()
+        static function findById($search_id)
         {
-
+            $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands WHERE id = {$search_id};");
+            foreach($returned_brands as $brand) {
+                $id = $brand['id'];
+                $name = $brand['name'];
+                return new Brand($name, $id);
+            }
         }
 
         static function deleteAll()

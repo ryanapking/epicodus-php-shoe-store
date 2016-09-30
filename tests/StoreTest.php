@@ -17,7 +17,7 @@
         protected function tearDown()
         {
             Store::deleteAll();
-            // Brand::deleteAll();
+            Brand::deleteAll();
         }
 
         function test_getId()
@@ -170,6 +170,69 @@
             $this->assertEquals($test_Store, $result);
         }
 
-        
+        function test_addBrand()
+        {
+            // Arrange
+            $store_name = "Shoepocalypse";
+            $test_Store = new Store($store_name);
+            $test_Store->save();
+
+            $brand_name = "Wear Us!";
+            $test_Brand = new Brand($brand_name);
+            $test_Brand->save();
+
+            // Act
+            $test_Store->addBrand($test_Brand);
+            $result = $test_Store->getBrandList();
+
+            // Assert
+            $this->assertEquals([$test_Brand], $result);
+        }
+
+        function test_deleteBrand()
+        {
+            // Arrange
+            $store_name = "Shoepocalypse";
+            $test_Store = new Store($store_name);
+            $test_Store->save();
+
+            $brand_name = "Wear Us!";
+            $test_Brand = new Brand($brand_name);
+            $test_Brand->save();
+
+            $test_Store->addBrand($test_Brand);
+
+            // Act
+            $test_Store->deleteBrand($test_Brand);
+            $result = $test_Store->getBrandList();
+
+            // Assert
+            $this->assertEquals([], $result);
+        }
+
+        function test_getBrandList()
+        {
+            // Arrange
+            $store_name = "Shoepocalypse";
+            $test_Store = new Store($store_name);
+            $test_Store->save();
+
+            $brand_name = "Wear Us!";
+            $test_Brand = new Brand($brand_name);
+            $test_Brand->save();
+
+            $brand_name2 = "On Your Feet";
+            $test_Brand2 = new Brand($brand_name2);
+            $test_Brand2->save();
+
+            $test_Store->addBrand($test_Brand);
+            $test_Store->addBrand($test_Brand2);
+
+            // Act
+            $result = $test_Store->getBrandList();
+
+            // Assert
+            $this->assertEquals([$test_Brand, $test_Brand2], $result);
+        }
     }
  ?>

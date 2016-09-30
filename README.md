@@ -86,6 +86,10 @@ _Spec 22: A brand can be found by the database ID number._
 * _Input: Find Shoe brand with ID 47_
 * _Output: "On Your Feet"_
 
+
+
+
+
 _Spec 10: A brand of shoes can be added to a store._
 * _Input: "Shoepocalypse" now sells "Nike" shoes_
 * _Output: Database brands_stores table now includes an entry linking "Shoepocalypse" with the "Nike" brand_
@@ -98,7 +102,9 @@ _Spec 12: A list of all brands sold in a store can be returned._
 * _Input: Get all shoe brands sold at "Shoepocalypse"_
 * _Output: "Nike", "Crocs"_
 
-
+_Spec 22: A list of all stores that sell a brand can be returned._
+* _Input: Find all stores that sell "On Your Feet" brand shoes_
+* _Output: "Shoemageddon", "Shoepocalypse"_
 
 
 ##  MySQL Database Setup

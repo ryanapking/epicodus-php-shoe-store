@@ -16,7 +16,7 @@ class BrandTest extends PHPUnit_Framework_TestCase
 {
     protected function tearDown()
     {
-        // Store::deleteAll();
+        Store::deleteAll();
         Brand::deleteAll();
     }
 
@@ -113,6 +113,85 @@ class BrandTest extends PHPUnit_Framework_TestCase
 
         // Assert
         $this->assertEquals([$test_Brand, $test_Brand2], $result);
+    }
+
+    function test_delete()
+    {
+        // Arrange
+        $brand_name = "Wear Us!";
+        $test_Brand = new Brand($brand_name);
+        $test_Brand->save();
+
+        $brand_name2 = "On Your Feet";
+        $test_Brand2 = new Brand($brand_name2);
+        $test_Brand2->save();
+
+        // Act
+        $test_Brand->delete();
+        $result = Brand::getAll();
+
+        // Assert
+        $this->assertEquals([$test_Brand2], $result);
+    }
+
+    function test_update()
+    {
+        // Arrange
+        $brand_name = "Wear Us!";
+        $test_Brand = new Brand($brand_name);
+        $test_Brand->save();
+
+        // Act
+        $new_name = "On Your Feet";
+        $test_Brand->setName($new_name);
+        $test_Brand->update();
+        $result = Brand::getAll();
+
+        // Assert
+        $this->assertEquals([$test_Brand], $result);
+    }
+
+    function test_findById()
+    {
+        // Arrange
+        $brand_name = "Wear Us!";
+        $test_Brand = new Brand($brand_name);
+        $test_Brand->save();
+
+        $brand_name2 = "On Your Feet";
+        $test_Brand2 = new Brand($brand_name2);
+        $test_Brand2->save();
+
+        // Act
+        $search_id = $test_Brand->getId();
+        $result = Brand::findById($search_id);
+
+        // Assert
+        $this->assertEquals($test_Brand, $result);
+    }
+
+    function test_getStoreList()
+    {
+        // Arrange
+        $brand_name = "Wear Us!";
+        $test_Brand = new Brand($brand_name);
+        $test_Brand->save();
+
+        $store_name = "Shoepocalypse";
+        $test_Store = new Store($store_name);
+        $test_Store->save();
+        $test_Store->addBrand($test_Brand);
+
+        $store_name2 = "Shoemageddon";
+        $test_Store2 = new Store($store_name2);
+        $test_Store2->save();
+        $test_Store2->addBrand($test_Brand);
+
+        // Act
+        $result = $test_Brand->getStoreList();
+
+        // Assert
+        $this->assertEquals([$test_Store, $test_Store2], $result);
     }
 }
  ?>
