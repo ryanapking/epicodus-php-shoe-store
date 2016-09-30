@@ -120,7 +120,7 @@ _Dependencies: Silex, Twig, PHPUnit_
 
 * _Clone repository from github_
 * _While in the project directory, run 'composer install' in the terminal._
-* _Import the databased hair_salon and hair_salon_test through your apache server._
+* _Import the databases shoes and shoe_tests through your apache server, or run the mySQL commands listed above to create the necessary databases._
 * _Start a local server with the web directory as the root._
 * _Navigate to localhost in browser window._
 
