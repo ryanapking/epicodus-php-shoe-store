@@ -22,7 +22,7 @@
                 </div>
                 <div class='col col-sm-6'>
                     <h2>Add this brand to another store:</h2>
-                    <form action='/brand/{{ brand.getId }}' method='post' class='form well'>
+                    <form action='/brand/{{ brand.getId }}/add_brand_to_store' method='post' class='form well'>
                         <div class='form-group'>
                             <label>Select a store:</label>
                             <select name='store_id' class='form-control'>
@@ -32,6 +32,20 @@
                             </select>
                             <br>
                             <button type='submit' class='btn btn-primary'>Add brand</button>
+                        </div>
+                    </form>
+                    <h2>Remove this brand from a store:</h2>
+                    <form action='/brand/{{ brand.getId }}/remove_brand' method='post' class='form well'>
+                        <input type='hidden' name='_method' value='delete'>
+                        <div class='form-group'>
+                            <label>Select a store:</label>
+                            <select name='store_id' class='form-control'>
+                                {% for store in brand_stores %}
+                                    <option value={{ store.getId }}>{{ store.getName }}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                            <button type='submit' class='btn btn-danger'>Remove brand</button>
                         </div>
                     </form>
                     <h2>Update this brand:</h2>

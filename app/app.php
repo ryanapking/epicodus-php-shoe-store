@@ -44,15 +44,6 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store_brands, 'all_brands' => $all_brands));
     });
 
-    $app->post('/store/{store_id}', function($store_id) use ($app) {
-        // adds the brand to the store, then redirects to the get route
-        $store = Store::findById($store_id);
-        $brand_id = $_POST['brand_id'];
-        $brand = Brand::findById($brand_id);
-        $store->addBrand($brand);
-        return $app->redirect('/store/' . $store_id);
-    });
-
     $app->patch('/store/{store_id}', function($store_id) use ($app) {
         // updates the store information, then redirects to the get route
         $store = Store::findById($store_id);
@@ -67,6 +58,24 @@
         $store = Store::findById($store_id);
         $store->delete();
         return $app->redirect('/stores');
+    });
+
+    $app->post('/store/{store_id}/add_brand', function($store_id) use ($app) {
+        // adds the brand to the store, then redirects to the get route
+        $store = Store::findById($store_id);
+        $brand_id = $_POST['brand_id'];
+        $brand = Brand::findById($brand_id);
+        $store->addBrand($brand);
+        return $app->redirect('/store/' . $store_id);
+    });
+
+    $app->delete('/store/{store_id}/remove_brand', function($store_id) use ($app) {
+        // removes a brand from the store, then redirects to the store route
+        $store = Store::findById($store_id);
+        $brand_id = $_POST['brand_id'];
+        $brand = Brand::findById($brand_id);
+        $store->deleteBrand($brand);
+        return $app->redirect('/store/' . $store_id);
     });
 
 // brands routes
@@ -91,15 +100,6 @@
         return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand_stores, 'all_stores' => Store::getAll()));
     });
 
-    $app->post('/brand/{brand_id}', function($brand_id) use ($app) {
-        // adds the brand to a store, then redirects to the get route
-        $brand = Brand::findById($brand_id);
-        $store_id = $_POST['store_id'];
-        $store = Store::findById($store_id);
-        $store->addBrand($brand);
-        return $app->redirect('/brand/' . $brand_id);
-    });
-
     $app->delete('/brand/{brand_id}', function($brand_id) use ($app) {
         // deletes the current brands, then redirects to the brands route
         $brand = Brand::findById($brand_id);
@@ -113,6 +113,24 @@
         $new_name = $_POST['brand_name'];
         $brand->setName($new_name);
         $brand->update();
+        return $app->redirect('/brand/' . $brand_id);
+    });
+
+    $app->post('/brand/{brand_id}/add_brand_to_store', function($brand_id) use ($app) {
+        // adds the brand to a store, then redirects to the get route
+        $brand = Brand::findById($brand_id);
+        $store_id = $_POST['store_id'];
+        $store = Store::findById($store_id);
+        $store->addBrand($brand);
+        return $app->redirect('/brand/' . $brand_id);
+    });
+
+    $app->delete('/brand/{brand_id}/remove_brand', function($brand_id) use ($app) {
+        // removes a brand from a store, then redirects to the brand get route
+        $brand = Brand::findById($brand_id);
+        $store_id = $_POST['store_id'];
+        $store = Store::findById($store_id);
+        $store->deleteBrand($brand);
         return $app->redirect('/brand/' . $brand_id);
     });
 
