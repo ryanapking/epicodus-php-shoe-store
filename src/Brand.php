@@ -29,7 +29,9 @@
 
         function getStoreList()
         {
-            $returned_store_ids = $GLOBALS['DB']->query("SELECT brands_stores.store_id FROM brands JOIN brands_stores on (brands.id = brands_stores.brand_id) WHERE brands.id = {$this->id};");
+            $returned_store_ids = $GLOBALS['DB']->query("SELECT brands_stores.store_id FROM brands
+                JOIN brands_stores on (brands.id = brands_stores.brand_id) 
+                WHERE brands.id = {$this->id};");
             $stores = array();
             foreach($returned_store_ids as $id) {
                 $search_id = $id['store_id'];

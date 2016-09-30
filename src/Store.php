@@ -29,7 +29,9 @@
 
         function getBrandList()
         {
-            $returned_brand_ids = $GLOBALS['DB']->query("SELECT brands_stores.brand_id FROM stores JOIN brands_stores ON (stores.id = brands_stores.store_id) WHERE stores.id = {$this->id};");
+            $returned_brand_ids = $GLOBALS['DB']->query("SELECT brands_stores.brand_id FROM stores
+                JOIN brands_stores ON (stores.id = brands_stores.store_id)
+                WHERE stores.id = {$this->id};");
             $brands = array();
             foreach($returned_brand_ids as $id) {
                 $search_id = $id['brand_id'];

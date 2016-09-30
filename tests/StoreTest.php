@@ -18,6 +18,7 @@
         {
             Store::deleteAll();
             Brand::deleteAll();
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores;");
         }
 
         function test_getId()
