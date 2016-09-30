@@ -71,29 +71,24 @@
 
 // brands routes
     $app->get('/brands', function() use ($app) {
-
+        // displays a list of all available brands and a form to add new brands
+        return $app['twig']->render('/brands', array('brands' => Brand::getAll()));
     });
 
     $app->post('/brands', function() use ($ap) {
-
+        // adds a new brand to the database, then redirects to the get route
+        $brand_name = $_POST['brand_name'];
+        $new_brand = new Brand($brand_name);
+        $new_brand->save();
+        return $app->redirect('/brands');
     });
 
 // brand (singular) routes
 
     $app->get('/brand/{brand_id}', function($brand_id) use ($app) {
-
-    });
-
-    $app->post('/brand/{brand_id}', function($brand_id) use ($app) {
-
-    });
-
-    $app->patch('/brand/{brand_id}', function($brand_id) use ($app) {
-
-    });
-
-    $app->delete('/brand/{brand_id}', function($brand_id) use ($app) {
-
+        // displays a list of stores selling the current brand
+        $store = Store::findById($brand_id);
+        return $app['twig']->render('brand.html.twig', array('brand' => $store));
     });
 
     return $app;
