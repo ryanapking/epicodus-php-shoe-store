@@ -4,9 +4,10 @@
         private $id;
         private $name;
 
-        function __construct()
+        function __construct($name, $id = null)
         {
-
+            $this->id = $id;
+            $this->name = $name;
         }
 
         function save()
@@ -58,17 +59,17 @@
     // getters and setters
         function getId()
         {
-
+            return $this->id;
         }
 
         function getName()
         {
-
+            return $this->name;
         }
 
-        function setName()
+        function setName($new_name)
         {
-
+            $this->name = $new_name;
         }
     }
  ?>
