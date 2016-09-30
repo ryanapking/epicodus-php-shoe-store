@@ -10,9 +10,59 @@ _An application for tracking shoe stores and the brands they sold in them. User 
 
 ## Specifications
 
-_Spec 1: Stylists can be saved to the database._
-* _Input: Save new Stylist "Rebecca"_
-* _Output: Database stylists table now includes "Rebecca" with a unique ID_
+_Spec 1: The store ID can be returned._
+* _Input: Get "Shoepocalypse" ID_
+* _Output: 34_
+
+_Spec 2: The store name can be returned._
+* _Input: Get store name_
+* _Output: "Shoemageddon"_
+
+_Spec 3: The store name can be changed._
+* _Input: Change "Shoemageddon" to "Shoepocalypse"_
+* _Output: Store name now set to "Shoepocalypse"_
+
+_Spec 4: Store objects can be saved to the database_
+* _Input: Save store "Shoemageddon"_
+* _Output: Database stores table now includes "Shoemageddon" with a unique ID_
+
+_Spec 5: The entire list of stores can be deleted from the database._
+* _Input: Delete all stores_
+* _Output: Database stores table is now empty_
+
+_Spec 6: A list of all stores can be retrieved from the database._
+* _Input: Get all stores_
+* _Output: "Shoepocalypse", "Shoemageddon"_
+
+_Spec 7: Individual store objects can be deleted from the database_
+* _Input: Delete store "Shoemageddon"_
+* _Output: Database stores table no longer includes "Shoemageddon"_
+
+_Spec 8: Store objects can be updated in the database_
+* _Input 1: Change name of "Shoemageddon" to "Shoepocalypse"_
+* _Input 2: Update "Shoemageddon"_
+* _Output: Database stores table now shows the name of "Shoepocalypse"_
+
+_Spec 9: A store can be found by the database ID number._
+* _Input: Find Shoe store with ID 47_
+* _Output: "Shoepocalypse"_
+
+_Spec 10: A brand of shoes can be added to a store._
+* _Input: "Shoepocalypse" now sells "Nike" shoes_
+* _Output: Database brands_stores table now includes an entry linking "Shoepocalypse" with the "Nike" brand_
+
+_Spec 11: A brand of shoes can be deleted from a store._
+* _Input: "Shoepocalypse" no longer sells "Nike" shoes_
+* _Output: Database brands_stores table no longer includes an entry linking "Shoepocalypse" with the "Nike" brand_
+
+_Spec 12: A list of all brands sold in a store can be returned._
+* _Input: Get all shoe brands sold at "Shoepocalypse"_
+* _Output: "Nike", "Crocs"_
+
+
+
+
+
 
 
 
