@@ -8,6 +8,8 @@
 
 _An application for tracking shoe stores and the brands they sold in them. User can select a store to see which brands they sell, and can select a brand to see which store sells their shoes._
 
+_Project can be viewed [here](http://shoes.ryanapking.com/)._
+
 ## Specifications
 
 _Spec 1: A store's ID can be returned._
